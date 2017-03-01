@@ -1,0 +1,43 @@
+/*[class^="icon-"],[class*=" icon-"] {
+    background-image:url("../img/glyphicons-halflings.png");
+}*/
+
+#gameContainer .row {
+
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.game-cell {
+    width: 40px;
+    height: 40px;
+
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url('../image/chessboard.png');
+}
+.game-cell-selectable {
+    cursor: pointer;
+}
+.game-cell-selectable:hover {
+    background-image: url('../image/chessmanBlack.png');
+}
+.game-cell-taken {
+
+}
+.game-cell-player {
+    background-image: url('../image/chessmanBlack.png');
+}
+.game-cell-opponent {
+    background-image: url('../image/chessmanWhite.png');
+}
+.player-label {
+    font-weight: bold;
+}
+#status {
+    font-weight: bold;
+    font-style: italic;
+}
