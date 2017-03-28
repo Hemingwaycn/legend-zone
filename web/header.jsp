@@ -1,72 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- Standard Meta -->
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<link rel="stylesheet" type="text/css" href="./resource/semantic.min.css">
+<script src="./resource/semantic.min.js"></script>
 
+<style type="text/css">
+    body {
+        background-color: #FFFFFF;
+    }
 
+    .ui.menu .item img.logo {
+        margin-right: 1.5em;
+    }
 
+    .main.container {
+        margin-top: 7em;
+    }
 
-    <!-- Standard Meta -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    .wireframe {
+        margin-top: 2em;
+    }
 
-
-
-    <link rel="stylesheet" type="text/css" href="./resource/semantic.css">
-
-
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-
-    <script src="./resource/semantic.js"></script>
-
-    <script>
-        $(document)
-                .ready(function() {
-                    $('.ui.selection.dropdown').dropdown();
-                    $('.ui.menu .ui.dropdown').dropdown({
-                        on: 'hover'
-                    });
-                })
-        ;
-    </script>
-
-
-    <link rel="stylesheet" type="text/css" href="./resource/components/reset.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/site.css">
-
-    <link rel="stylesheet" type="text/css" href="./resource/components/container.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/grid.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/header.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/image.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/menu.css">
-
-    <link rel="stylesheet" type="text/css" href="./resource/components/divider.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/list.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/segment.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/dropdown.css">
-    <link rel="stylesheet" type="text/css" href="./resource/components/icon.css">
-
-    <style type="text/css">
-        body {
-            background-color: #FFFFFF;
-        }
-        .ui.menu .item img.logo {
-            margin-right: 1.5em;
-        }
-        .main.container {
-            margin-top: 7em;
-        }
-        .wireframe {
-            margin-top: 2em;
-        }
-        .ui.footer.segment {
-            margin: 5em 0em 0em;
-            padding: 5em 0em;
-        }
-    </style>
-
-
-
-
-
+    .ui.footer.segment {
+        margin: 5em 0em 0em;
+        padding: 5em 0em;
+    }
+</style>
 <div class="ui fixed inverted menu">
     <div class="ui container">
         <div href="#" class="header item">
@@ -95,3 +57,21 @@
     </div>
 </div>
 
+<div class="ui small test modal transition hidden" style="margin-top: -92.5px;">
+    <div class="header">Notice</div>
+    <div class="content">
+        <p>Content</p>
+    </div>
+    <div class="actions">
+        <!--<div class="ui negative button">No </div>-->
+        <div class="ui positive right labeled icon button">OK <i class="checkmark icon"></i> </div>
+    </div>
+</div>
+
+<script>
+    var showModal;
+    showModal = function (text) {
+        $(".ui.modal").children(".content").html(text);
+        $('.ui.modal').modal('show');
+    }
+</script>

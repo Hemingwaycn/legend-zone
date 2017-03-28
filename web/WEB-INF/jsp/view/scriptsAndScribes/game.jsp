@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
         <link rel="stylesheet"
               href="<c:url value="/resource/stylesheet/ticTacToe.css" />" />
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
@@ -17,12 +16,20 @@
         <div class="ui main text container">
         <h2>Scripts And Scribes</h2>
 
-        <span class="player-label">"既驰三辈毕,而传说一不胜而再胜,卒得千金.遂以为魔王." -- 传说大魔王赛马</span><br /><br />
-        <span class="player-label">游戏规则:每人拥有9张牌,分别为数字1~9.每回合双方同时出牌,数字大的一方是本回合的胜利方.9回合获胜次数多的一方胜.感谢传说大魔王提供这个游戏.</span><br />
-        <span class="player-label">You:</span> ${username}<br />
-        <span class="player-label">Opponent:</span>
-        <span id="opponent"><i>Waiting</i></span>
-        <div id="status">&nbsp;</div>
+            <div class="two ui buttons">
+                <button class="ui green button"><span class="player-label"></span> ${username}</button>
+                <div class="or" data-text="vs"></div>
+                <button class="ui red loading button"><span class="player-label"></span><span id="opponent"></span></button>
+            </div>
+
+            <div class="ui warning message">"既驰三辈毕,而传说一不胜而再胜,卒得千金...遂以为魔王." -- 传说大魔王赛马
+            </br>
+                游戏规则:每人拥有9张牌,分别为数字1~9.每回合双方同时出牌,数字大的一方是本回合的胜利方.9回合获胜次数多的一方胜.
+            </div>
+            <div class="ui warning message"><div id="status">&nbsp;</div></div>
+
+
+
 
         <div id="gameContainer">
             <div class="row">
@@ -41,44 +48,11 @@
 
         <div id="game_msg"></div>
 
-            <div id="modalWaiting" class="modal hide fade">
-                <div class="modal-header"><h3>Please Wait...</h3></div>
-                <div class="modal-body" id="modalWaitingBody">&nbsp;</div>
-            </div>
-            <div id="modalError" class="modal hide fade">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;
-                    </button>
-                    <h3>Error</h3>
-                </div>
-                <div class="modal-body" id="modalErrorBody">A blah error occurred.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-            <div id="modalGameOver" class="modal hide fade">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;
-                    </button>
-                    <h3>Game Over</h3>
-                </div>
-                <div class="modal-body" id="modalGameOverBody">&nbsp;</div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal">OK</button>
-                </div>
-            </div>
 
         </div>
         <script type="text/javascript" language="javascript">
             var move;
             $(document).ready(function() {
-                var modalError = $("#modalError");
-                var modalErrorBody = $("#modalErrorBody");
-                var modalWaiting = $("#modalWaiting");
-                var modalWaitingBody = $("#modalWaitingBody");
-                var modalGameOver = $("#modalGameOver");
-                var modalGameOverBody = $("#modalGameOverBody");
                 var opponent = $("#opponent");
                 var status = $("#status");
                 var opponentUsername;
@@ -89,15 +63,11 @@
 
                 if(!("WebSocket" in window))
                 {
-                    modalErrorBody.text('WebSockets are not supported in this ' +
+                    showModal('WebSockets are not supported in this ' +
                             'browser. Try Internet Explorer 10 or the latest ' +
                             'versions of Mozilla Firefox or Google Chrome.');
-                    modalError.modal('show');
                     return;
                 }
-
-                modalWaitingBody.text('Connecting to the server.');
-                modalWaiting.modal({ keyboard: false, show: true });
 
                 var server;
                 try {
@@ -106,16 +76,12 @@
                                 <c:param name="action" value="${action}" />
                             </c:url>');
                 } catch(error) {
-                    modalWaiting.modal('hide');
-                    modalErrorBody.text(error);
-                    modalError.modal('show');
+                    showModal(error);
                     return;
                 }
 
                 server.onopen = function(event) {
-                    modalWaitingBody
-                            .text('Waiting on your opponent to join the game.');
-                    modalWaiting.modal({ keyboard: false, show: true });
+
                 };
 
                 window.onbeforeunload = function() {
@@ -125,30 +91,28 @@
                 server.onclose = function(event) {
                     if(!event.wasClean || event.code != 1000) {
                         toggleTurn(false, 'Game over due to error!');
-                        modalWaiting.modal('hide');
-                        modalErrorBody.text('Code ' + event.code + ': ' +
+                        showModal('Code ' + event.code + ': ' +
                                 event.reason);
-                        modalError.modal('show');
                     }
                 };
 
                 server.onerror = function(event) {
-                    modalWaiting.modal('hide');
-                    modalErrorBody.text(event.data);
-                    modalError.modal('show');
+                    showModal(event.data);
                 };
 
                 server.onmessage = function(event) {
                     var message = JSON.parse(event.data);
                     if(message.action == 'gameStarted') {
-                        if(message.game.player1 == username)
+                        if (message.game.player1 == username)
                             opponentUsername = message.game.player2;
                         else
                             opponentUsername = message.game.player1;
                         opponent.text(opponentUsername);
+                        $(".loading").removeClass("loading");;
                         //toggleTurn(message.game.nextMoveBy == username);
                         toggleTurn(true);
-                        modalWaiting.modal('hide');
+
+
                     } else if(message.action == 'opponentMadeMove') {
                         /*$('#r' + message.move.row + 'c' + message.move.column)
                                 .unbind('click')
@@ -158,23 +122,20 @@
                     } else if(message.action == 'gameOver') {
                         toggleTurn(false, 'Game Over!');
                         if(message.winner) {
-                            modalGameOverBody.text('Congratulations, you won!');
+                            showModal('Congratulations, you won!');
                         } else {
-                            modalGameOverBody.text('User "' + opponentUsername +
+                            showModal('User "' + opponentUsername +
                                     '" won the game.');
                         }
-                        modalGameOver.modal('show');
                     } else if(message.action == 'gameIsDraw') {
                         toggleTurn(false, 'The game is a draw. ' +
                                 'There is no winner.');
-                        modalGameOverBody.text('The game ended in a draw. ' +
+                        showModal('The game ended in a draw. ' +
                                 'Nobody wins!');
-                        modalGameOver.modal('show');
                     } else if(message.action == 'gameForfeited') {
                         toggleTurn(false, 'Your opponent forfeited!');
-                        modalGameOverBody.text('User "' + opponentUsername +
+                        showModal('User "' + opponentUsername +
                                 '" forfeited the game. You win!');
-                        modalGameOver.modal('show');
                     } else if(message.action == 'text'){
                         $("#game_msg").html("<div class='ui info message'>" + message.msg + "</div>" + $("#game_msg").html());
                     }
@@ -195,13 +156,11 @@
 
                 move = function(row, column) {
                     if(!myTurn) {
-                        modalErrorBody.text('It is not your turn yet!');
-                        modalError.modal('show');
+                        showModal('It is not your turn yet!');
                         return;
                     }
                     if($('.game-cell:eq('+column+')').hasClass("game-cell-taken")){
-                        modalErrorBody.text('This number was already used!');
-                        modalError.modal('show');
+                        showModal('This number was already used!');
                         return;
                     }
                     if(server != null) {
@@ -211,8 +170,7 @@
                                 .addClass('game-cell-player game-cell-taken');
                         toggleTurn(false);
                     } else {
-                        modalErrorBody.text('Not connected to came server.');
-                        modalError.modal('show');
+                        showModal('Not connected to came server.');
                     }
                 };
             });

@@ -1,4 +1,3 @@
-
 <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
         <div class="ui stackable inverted divided grid">
@@ -44,5 +43,3 @@
         </div>
     </div>
 </div>
-
-

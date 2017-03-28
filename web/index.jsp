@@ -21,9 +21,6 @@
                 <div class="column">
                     <h1 class="ui header">Games</h1>
                     <div class="ui divider"></div>
-                    <a class="ui primary button" tabindex="0" href="<c:url value="/ticTacToe" />">
-                        Tic Tac Toe
-                    </a>
                     <a class="ui primary button" tabindex="0" href="<c:url value="/blackAndWhite" />">
                         Black And White
                     </a>
@@ -33,9 +30,30 @@
                     <a class="ui primary button" tabindex="0" href="<c:url value="/gomoku" />">
                         Gomoku
                     </a>
+                    <br/> <br/>
                 </div>
             </div>
 
+            <div class="row">
+                <div class="column">
+                    <h1 class="ui header">Mafia</h1>
+                    <div class="ui divider"></div>
+                    <a class="ui primary button" tabindex="0" href="<c:url value="/mafia" />">
+                        Mafia beta
+                    </a>
+                    <br/> <br/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <h1 class="ui header">Timer</h1>
+                    <div class="ui divider"></div>
+                    <a class="ui primary button" tabindex="0" href="#">
+                        Cube Timer
+                    </a>
+                </div>
+            </div>
 
         </div>
     <%@ include file="/footer.jsp"%>
