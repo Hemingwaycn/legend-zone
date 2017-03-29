@@ -91,15 +91,11 @@ public class BlackAndWhiteServer
 
             String bw = (move.getColumn()+1)%2 == 0 ? "白":"黑";
             if(isPlayer1){
-                System.out.println("P1 :" + (move.getColumn()+1) );
-
                 this.sendJsonMessage(game.player1, game,
                         new TextMessage("round" + R + ": 你出的牌是" + (move.getColumn()+1)));
                 this.sendJsonMessage(game.player2, game,
                         new TextMessage("round" + R + ": 对手出了一张" + bw + "牌"));
             }else{
-                System.out.println("P2 :" + (move.getColumn()+1) );
-
                 this.sendJsonMessage(game.player2, game,
                         new TextMessage("round" + R + ": 你出的牌是" + (move.getColumn()+1)));
                 this.sendJsonMessage(game.player1, game,
@@ -114,7 +110,6 @@ public class BlackAndWhiteServer
                 int n1 = game.blackAndWhiteGame.GetMove(BlackAndWhiteGame.Player.PLAYER1,r1);
                 int n2 = game.blackAndWhiteGame.GetMove(BlackAndWhiteGame.Player.PLAYER2,r2);
                 if(n1>n2){
-                    System.out.println("P1 win this round." );
                     this.sendJsonMessage(game.player1, game,
                             new TextMessage("round" + R + ": 本回合胜利."));
                     this.sendJsonMessage(game.player2, game,
@@ -123,7 +118,6 @@ public class BlackAndWhiteServer
                     this.sendJsonMessage(game.player1, game,
                             new OpponentMadeMoveMessage(move));
                 }else if(n1<n2){
-                    System.out.println("P2 win this round." );
                     this.sendJsonMessage(game.player2, game,
                             new TextMessage("round" + R + ": 本回合胜利."));
                     this.sendJsonMessage(game.player1, game,
@@ -136,8 +130,6 @@ public class BlackAndWhiteServer
                             new TextMessage("round" + R + ": 本回合平局."));
                     this.sendJsonMessage(game.player1, game,
                             new TextMessage("round" + R + ": 本回合平局."));
-                    System.out.println("draw." );
-
                     this.sendJsonMessage((isPlayer1 ? game.player1 : game.player2), game,
                             new OpponentMadeMoveMessage(move));
                 }

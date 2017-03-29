@@ -15,7 +15,6 @@ public class MafiaGame {
 
     private Player winner;
 
-
     public MafiaGame(long id) {
         this.id = id;
         this.playerList = new ArrayList<>();
