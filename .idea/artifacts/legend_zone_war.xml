@@ -2,7 +2,7 @@
   <artifact type="war" name="legend-zone:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="legend-zone-1.0.0.SNAPSHOT.war">
-      <element id="artifact" artifact-name="game-site:war exploded" />
+      <element id="artifact" artifact-name="legend-zone:war exploded" />
     </root>
   </artifact>
 </component>

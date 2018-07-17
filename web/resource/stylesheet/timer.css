@@ -1,0 +1,83 @@
+.main.container {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+.ui.container {
+    margin-top: 1em !important;
+    height: 100%;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+#stats, #stats * {
+    box-sizing: content-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial;
+    overflow: hidden;
+}
+
+html.p70 {
+    font-size: 9.8px;
+    font-size: 1.4vh;
+}
+html.p80 {
+    font-size: 11.2px;
+    font-size: 1.6vh;
+}
+html.p90 {
+    font-size: 12.6px;
+    font-size: 1.8vh;
+}
+html {
+    font-size: 14px;
+    font-size: 2vh;
+}
+html.p110 {
+    font-size: 15.4px;
+    font-size: 2.2vh;
+}
+html.p125 {
+    font-size: 17.5px;
+    font-size: 2.5vh;
+}
+html.p150 {
+    font-size: 21px;
+    font-size: 3vh;
+}
+
+
+#scramble{
+    min-height: 76px;
+}
+
+
+#game_msg{
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-top: 16px;
+    /*text-align: center;*/
+    /*padding-right: 21px;*/
+    /*padding-right: 1.5rem;*/
+    /*margin-right: -21px;*/
+    /*margin-right: -1.5rem;*/
+    /*margin-top: 2px;*/
+    /*margin-top: 0.15rem;*/
+    /*width: 100%;*/
+    /*display: inline-block;*/
+    /*width: auto;*/
+}

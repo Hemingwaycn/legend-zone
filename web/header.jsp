@@ -36,37 +36,10 @@
             LegendZone
         </div>
         <a href="/" class="item">Home</a>
-        <a href="#" class="ui simple dropdown item">
-            Dropdown <i class="dropdown icon"></i>
-            <div class="menu">
-                <div class="item">Link Item</div>
-                <div class="item">Link Item</div>
-                <div class="divider"></div>
-                <div class="header">Header Item</div>
-                <div class="item">
-                    <i class="dropdown icon"></i>
-                    Sub Menu
-                    <div class="menu">
-                        <div class="item">Link Item</div>
-                        <div class="item">Link Item</div>
-                    </div>
-                </div>
-                <div class="item">Link Item</div>
-            </div>
-        </a>
     </div>
 </div>
 
-<div class="ui small test modal transition hidden" style="margin-top: -92.5px;">
-    <div class="header">Notice</div>
-    <div class="content">
-        <p>Content</p>
-    </div>
-    <div class="actions">
-        <!--<div class="ui negative button">No </div>-->
-        <div class="ui positive right labeled icon button">OK <i class="checkmark icon"></i> </div>
-    </div>
-</div>
+
 
 <script>
     var showModal;

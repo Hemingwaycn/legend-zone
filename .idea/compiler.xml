@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="game-site" />
+        <module name="legend-zone" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="game-site" target="1.8" />
+      <module name="legend-zone" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

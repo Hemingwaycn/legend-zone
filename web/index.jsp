@@ -13,7 +13,7 @@
                 <div class="column">
                     <h1 class="ui header">Welcome to Legend-Zone!</h1>
                     <div class="ui divider"></div>
-                    <div>    感谢传说大魔王赞助服务器,感谢脑残粉测试游戏. <br/>重磅更新:传说大魔王Gomoku AI<br/> <br/> </div>
+                    <div>    感谢传说大魔王赞助服务器. <br/>更新:魔方计时器<br/> <br/> </div>
                 </div>
             </div>
 
@@ -36,20 +36,9 @@
 
             <div class="row">
                 <div class="column">
-                    <h1 class="ui header">Mafia</h1>
-                    <div class="ui divider"></div>
-                    <a class="ui primary button" tabindex="0" href="<c:url value="/mafia" />">
-                        Mafia beta
-                    </a>
-                    <br/> <br/>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="column">
                     <h1 class="ui header">Timer</h1>
                     <div class="ui divider"></div>
-                    <a class="ui primary button" tabindex="0" href="#">
+                    <a class="ui primary button" tabindex="0" href="/timer">
                         Cube Timer
                     </a>
                 </div>
